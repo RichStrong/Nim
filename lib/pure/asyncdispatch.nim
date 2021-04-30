@@ -1616,7 +1616,7 @@ proc drain*(timeout = 500) =
   let start = now()
   while hasPendingOperations():
     discard runOnce(curTimeout)
-    curTimeout -= (now() - start).inMilliseconds.int
+    curTimeout = timeout - (now() - start).inMilliseconds.int
     if curTimeout < 0:
       break
 
